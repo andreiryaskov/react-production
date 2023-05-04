@@ -6100,6 +6100,11 @@
   "resolved" "https://registry.npmjs.org/dedent/-/dedent-0.7.0.tgz"
   "version" "0.7.0"
 
+"deelay@^2.0.0":
+  "integrity" "sha512-fT9u5WAwtuYM2oZjrwvkWW7DYYZ+AGIbakUx3w/FR2BjwyxXaK7XoxubQ2+MpFEa+qzVWldsO3ek5oxPexT4UA=="
+  "resolved" "https://registry.npmjs.org/deelay/-/deelay-2.0.0.tgz"
+  "version" "2.0.0"
+
 "deep-equal@^1.0.1":
   "integrity" "sha512-yd9c5AdiqVcR+JjcwUQb9DkhJc8ngNr0MahEBGvDiJw8puWab2yZlh+nkasOnZP+EGTAP6rRp2JzJhJZzvNF8g=="
   "resolved" "https://registry.npmjs.org/deep-equal/-/deep-equal-1.1.1.tgz"
