@@ -8,6 +8,8 @@
   "Some issues need review, and may require choosing\na different dependency": {
     "\n": "\n"
   },
+  "decrement": "decrement",
+  "increment": "increment",
   "throw error": "throw error",
   "toggle": "toggle",
   "Войти": "Come in",
