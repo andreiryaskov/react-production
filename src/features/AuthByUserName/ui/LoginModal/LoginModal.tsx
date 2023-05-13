@@ -8,6 +8,7 @@ export interface LoginModalProps {
     className?: string;
     isOpen: boolean;
     onClose: () => void;
+    lazy?: boolean;
 }
 
 export const LoginModal = (props: LoginModalProps) => {
@@ -22,6 +23,7 @@ export const LoginModal = (props: LoginModalProps) => {
             className={classNames(cls.LoginModal, {}, [className])}
             isOpen={isOpen}
             onClose={onClose}
+            lazy
         >
             <LoginForm />
         </Modal>
