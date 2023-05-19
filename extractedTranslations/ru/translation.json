@@ -1,18 +1,13 @@
 {
-  "": "",
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit": {
     " Aliquid commodi consequatur eligendi impedit incidunt necessitatibus possimus quis saepe sunt totam": {
       "": ""
     }
   },
-  "Some issues need review, and may require choosing\na different dependency": {
-    "\n": "\n"
-  },
   "decrement": "decrement",
   "increment": "increment",
   "throw error": "throw error",
-  "toggle": "Войти",
-  "Введите имя": "Введите имя",
+  "Введите username": "Введите username",
   "Введите пароль": "Введите пароль",
   "Войти": "Войти",
   "Главная": "Главная",
