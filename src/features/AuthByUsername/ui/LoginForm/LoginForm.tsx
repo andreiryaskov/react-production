@@ -6,7 +6,6 @@ import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoginState } from 'features/AuthByUsername/model/selectors/getLoginState/getLoginState';
 import { loginAction } from 'features/AuthByUsername/model/slice/loginSlice';
-import { LoginSchema } from 'features/AuthByUsername';
 import {
     loginByUserName,
 } from 'features/AuthByUsername/model/services/loginByUserName/loginByUserName';
@@ -18,7 +17,7 @@ interface LoginFormProps {
 
 export const LoginForm = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation();
-    const { username, password } = useSelector(getLoginState);
+    const { username, password, error, isLoading } = useSelector(getLoginState);
     const dispatch = useDispatch();
 
     const onChangeUserName = useCallback((value: string) => {
@@ -35,6 +34,7 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
 
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
+            {error && <div>{error}</div>}
             <Input
                 autofocus
                 type="text"
@@ -53,6 +53,7 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
             <Button
                 className={cls.loginBtn}
                 onClick={onLoginClick}
+                disabled={isLoading}
             >
                 {t('Войти')}
             </Button>

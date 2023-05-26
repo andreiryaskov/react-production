@@ -7,7 +7,6 @@ import { LoginSchema } from '../types/loginSchema';
 const initialState: LoginSchema = {
     password: '',
     username: '',
-    error: 'Error',
     isLoading: false,
 };
 
