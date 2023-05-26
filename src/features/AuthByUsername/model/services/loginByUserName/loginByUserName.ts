@@ -5,7 +5,7 @@ import { User } from 'entities/User';
 interface LoginAsyncThunkProps {
     username: string;
     password: string;
-};
+}
 
 export const loginByUserName = createAsyncThunk<User, LoginAsyncThunkProps, {rejectValue: string}>(
     'login/loginByUserName',
@@ -22,5 +22,5 @@ export const loginByUserName = createAsyncThunk<User, LoginAsyncThunkProps, {rej
             console.log(err);
             return thunkAPI.rejectWithValue('Неправильно введен username или password');
         }
-    }
-)
+    },
+);

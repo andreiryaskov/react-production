@@ -2,15 +2,15 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import {memo, useCallback} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getLoginState} from "features/AuthByUsername/model/selectors/getLoginState/getLoginState";
-import {loginAction} from "features/AuthByUsername/model/slice/loginSlice";
-import cls from './LoginForm.module.scss';
+import { memo, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLoginState } from 'features/AuthByUsername/model/selectors/getLoginState/getLoginState';
+import { loginAction } from 'features/AuthByUsername/model/slice/loginSlice';
 import { LoginSchema } from 'features/AuthByUsername';
 import {
-    loginByUserName
+    loginByUserName,
 } from 'features/AuthByUsername/model/services/loginByUserName/loginByUserName';
+import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
     className?: string;
@@ -30,9 +30,8 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
     }, [dispatch]);
 
     const onLoginClick = useCallback(() => {
-        dispatch(loginByUserName({username, password}));
-
-    }, [dispatch, password, username])
+        dispatch(loginByUserName({ username, password }));
+    }, [dispatch, password, username]);
 
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
