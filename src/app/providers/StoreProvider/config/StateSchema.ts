@@ -1,11 +1,16 @@
 import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
-import {AnyAction, CombinedState, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
+import {
+    AnyAction, EnhancedStore, Reducer, ReducersMapObject,
+} from '@reduxjs/toolkit';
+import { CombinedState } from 'redux';
 
 export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
+
+    // Асинхронные редюсеры
     loginForm?: LoginSchema;
 }
 
@@ -16,4 +21,8 @@ export interface ReducerManager {
     reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
+}
+
+export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
+    reducerManager: ReducerManager;
 }
