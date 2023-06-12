@@ -37,6 +37,11 @@
     border: none;
 }
 
+.outline_red {
+    color: var(--red-dark);
+    border: 1px solid var(--red-dark);
+}
+
 .square {
     padding: 0;
 }
