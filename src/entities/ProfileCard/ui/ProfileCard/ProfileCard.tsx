@@ -1,11 +1,14 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
-import cls from './ProfileCard.module.scss';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Select } from 'shared/ui/Select/Select';
+import { Currency } from 'entities/CurrencySelect/model/types/currency';
+import { CurrencySelect } from 'entities/CurrencySelect/ui/CurrencySelect';
 import { Profile } from '../../model/types/profile';
-import {Avatar} from "shared/ui/Avatar/Avatar";
+import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
     className?: string;
@@ -18,6 +21,7 @@ interface ProfileCardProps {
     onChangeAge?: (value?: string) => void;
     onChangeCity?: (value?: string) => void;
     onChangeUsername?: (value?: string) => void;
+    onChangeCurrency?: (currency: Currency) => void;
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
@@ -31,6 +35,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
         onChangeAge,
         onChangeCity,
         onChangeUsername,
+        onChangeCurrency,
         readonly,
     } = props;
 
@@ -57,8 +62,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
         );
     }
 
+    const mods: Mods = {
+        [cls.editing]: !readonly,
+    };
+
     return (
-        <div className={classNames(cls.ProfileCard, {}, [className])}>
+        <div className={classNames(cls.ProfileCard, mods, [className])}>
 
             <div className={cls.data}>
                 {data?.avatar && (
@@ -105,6 +114,13 @@ export const ProfileCard = (props: ProfileCardProps) => {
                     className={cls.input}
                     onChange={onChangeUsername}
                     readonly={readonly}
+                />
+                <CurrencySelect
+                    className={cls.input}
+                    value={data?.currency}
+                    onChange={onChangeCurrency}
+                    readonly={readonly}
+
                 />
             </div>
         </div>
