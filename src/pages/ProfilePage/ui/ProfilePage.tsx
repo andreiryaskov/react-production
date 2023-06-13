@@ -67,6 +67,11 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         dispatch(profileActions.updateProfile({ country }));
     }, [dispatch]);
 
+    const onChangeAvatar = useCallback((avatar?: string) => {
+        dispatch(profileActions.updateProfile({ avatar }));
+    }, [dispatch]);
+
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames('', {}, [className])}>
@@ -83,6 +88,8 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
                     onChangeUsername={onChangeUsername}
                     onChangeCurrency={onChangeCurrency}
                     onChangeCountry={onChangeCountry}
+                    onChangeAvatar={onChangeAvatar}
+
                 />
             </div>
         </DynamicModuleLoader>
