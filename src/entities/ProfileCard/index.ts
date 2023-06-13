@@ -1,5 +1,4 @@
-import { updateProfileData } from 'entities/ProfileCard/model/services/updateProfileData/updateProfileData';
-
+export { getProfileValidateErrors } from './model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 export { getProfileForm } from './model/selectors/getProfileForm/getProfileForm';
 export { getProfileIsLoading } from './model/selectors/getProfileLoading/getProfileLoading';
 export { getProfileReadonly } from './model/selectors/getProfileReadonly/getProfileReadonly';
@@ -12,6 +11,7 @@ export { updateProfileData } from './model/services/updateProfileData/updateProf
 export {
     Profile,
     ProfileSchema,
+    ValidateProfileError,
 } from './model/types/profile';
 
 export {
