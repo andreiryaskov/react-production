@@ -1,22 +1,24 @@
 import React, { useCallback } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Currency } from 'entities/CurrencySelect';
 import { Select } from 'shared/ui/Select/Select';
+import { Country } from '../model/types/country';
 
-export interface CurrencySelectProps {
+export interface CountrySelectProps {
     className?: string;
     value?: string;
-    onChange?: (value: Currency) => void;
+    onChange?: (value: Country) => void;
     readonly?: boolean;
 }
 
 const options = [
-    { value: Currency.EUR, content: Currency.EUR },
-    { value: Currency.USD, content: Currency.USD },
-    { value: Currency.RUB, content: Currency.RUB },
+    { value: Country.Armenia, content: Country.Armenia },
+    { value: Country.Belarus, content: Country.Belarus },
+    { value: Country.Ukraine, content: Country.Ukraine },
+    { value: Country.Kazakhstan, content: Country.Kazakhstan },
+    { value: Country.Russia, content: Country.Russia },
 ];
-export const CurrencySelect = (props: CurrencySelectProps) => {
+export const CountrySelect = (props: CountrySelectProps) => {
     const {
         className,
         readonly,
@@ -29,13 +31,13 @@ export const CurrencySelect = (props: CurrencySelectProps) => {
     const mods: Mods = {};
 
     const onChangeHandler = useCallback((value: string) => {
-        onChange?.(value as Currency);
+        onChange?.(value as Country);
     }, [onChange]);
 
     return (
         <Select
             className={classNames('', mods, [className])}
-            label={t('Укажите валюту')}
+            label={t('Укажите город')}
             options={options}
             value={value}
             onChange={onChangeHandler}
