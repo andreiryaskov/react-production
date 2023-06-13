@@ -9,7 +9,7 @@ import {
     getProfileReadonly,
     profileActions,
     ProfileCard,
-    profileReducer,
+    profileReducer, updateProfileData,
 } from 'entities/ProfileCard';
 import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -53,6 +53,10 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
     }, [dispatch]);
 
+    const onChangeUsername = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({username: value || ''}))
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames('', {}, [className])}>
@@ -66,6 +70,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
                     readonly={readonly}
                     onChangeAge={onChangeAge}
                     onChangeCity={onChangeCity}
+                    onChangeUsername={onChangeUsername}
                 />
             </div>
         </DynamicModuleLoader>
