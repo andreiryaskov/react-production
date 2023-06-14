@@ -17,6 +17,7 @@ export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): webpack.We
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
+            __PROJECT__: JSON.stringify('frontend'),
         }),
     ];
 

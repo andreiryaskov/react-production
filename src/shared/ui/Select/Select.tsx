@@ -1,5 +1,5 @@
 import React, { ChangeEvent, memo, useMemo } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import cls from './Select.module.scss';
 
@@ -41,9 +41,12 @@ export const Select = memo((props: SelectProps) => {
             onChange(e.target.value);
         }
     };
+    const mods: Mods = {
+        [cls.readonly]: readonly,
+    };
 
     return (
-        <div className={classNames(cls.Wrapper, {}, [className])}>
+        <div className={classNames(cls.Wrapper, mods, [className])}>
             {label && (
                 <span className={cls.label}>
                     {`${label}>`}
