@@ -2,6 +2,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): webpack.WebpackPluginInstance[] {
@@ -19,6 +20,7 @@ export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): webpack.We
             __API__: JSON.stringify(apiUrl),
             __PROJECT__: JSON.stringify('frontend'),
         }),
+
     ];
 
     if (isDev) {
@@ -26,6 +28,7 @@ export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): webpack.We
         plugins.push(new BundleAnalyzerPlugin({
             openAnalyzer: false,
         }));
+        plugins.push(new ReactRefreshWebpackPlugin());
     }
 
     return plugins;
