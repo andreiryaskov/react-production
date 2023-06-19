@@ -1,4 +1,8 @@
 export {
+    getInitedUser,
+} from './model/selectors/getInitedUser/getInitedUser';
+
+export {
     getUserAuthData,
 } from './model/selectors/getUserAuthData/getUserAuthData';
 
