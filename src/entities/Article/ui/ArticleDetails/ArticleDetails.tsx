@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { Loader } from 'shared/ui/Loader/Loader';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import cls from './ArticleDetails.module.scss';
 import { articleDetailsReducers } from '../../model/slice/articleDetailsSlice';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
@@ -43,7 +43,13 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
     if (isLoading) {
         content = (
-            <Loader />
+            <div>
+                <Skeleton width={200} height={200} border="50%" />
+                <Skeleton width={400} height={200} />
+                <Skeleton width={400} height={300} />
+                <Skeleton width={500} height={150} />
+            </div>
+
         );
     } else if (error) {
         content = (
