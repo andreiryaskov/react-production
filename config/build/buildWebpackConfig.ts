@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import { createSlice } from '@reduxjs/toolkit';
 import { BuildOptions } from './types/config';
 import { buildPlugins } from './buildPlugins';
 import { buildLoaders } from './buildLoaders';
