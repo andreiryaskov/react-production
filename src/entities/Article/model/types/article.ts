@@ -38,5 +38,5 @@ export interface Article {
     views: number,
     createdAt: string,
     type: ArticleType[],
-    blocks: ArticleBlockBase[]
+    blocks: ArticleBlock[]
 }
