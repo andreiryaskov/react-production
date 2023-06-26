@@ -8,6 +8,10 @@ import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Icon } from 'shared/ui/icon/Icon';
+import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/article';
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import cls from './ArticleDetails.module.scss';
 import { articleDetailsReducers } from '../../model/slice/articleDetailsSlice';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
@@ -42,6 +46,19 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     useEffect(() => {
         dispatch(fetchArticleById(id));
     }, [dispatch, id]);
+
+    const renderBlock = (block: ArticleBlock) => {
+        switch (block.type) {
+        case ArticleBlockType.IMAGE:
+            return <ArticleImageBlockComponent block={block} className={cls.block} />;
+        case ArticleBlockType.TEXT:
+            return <ArticleTextBlockComponent block={block} className={cls.block} />;
+        case ArticleBlockType.CODE:
+            return <ArticleCodeBlockComponent block={block} className={cls.block} />;
+        default:
+            return null;
+        }
+    };
 
     let content;
 
@@ -88,6 +105,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                     />
                     <Text text={article?.createdAt} />
                 </div>
+                {article?.blocks.map(renderBlock)}
             </>
 
         );
