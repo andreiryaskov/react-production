@@ -1,5 +1,5 @@
-import React, {memo} from 'react';
-import {classNames} from 'shared/lib/classNames/classNames';
+import React, { memo } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Icon.module.scss';
 
 export interface IconProps {
@@ -8,7 +8,6 @@ export interface IconProps {
 }
 
 export const Icon = memo((props: IconProps) => {
-
     const {
         Svg,
         className,
