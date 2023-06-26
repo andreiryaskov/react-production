@@ -1,3 +1,19 @@
 .ArticleDetails {
 
 }
+
+.articleInfo {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.avatarWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

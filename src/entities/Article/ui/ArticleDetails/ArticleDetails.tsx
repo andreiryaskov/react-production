@@ -4,8 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Icon } from 'shared/ui/icon/Icon';
 import cls from './ArticleDetails.module.scss';
 import { articleDetailsReducers } from '../../model/slice/articleDetailsSlice';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
@@ -14,6 +16,8 @@ import {
     getArticleDetailsError,
     getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetails';
+import EyeIcon from '../../../../shared/assets/icons/eye.svg';
+import CalendarIcon from '../../../../shared/assets/icons/date.svg';
 
 export interface ArticleDetailsProps {
     className?: string;
@@ -57,7 +61,35 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         );
     } else {
         content = (
-            <Text title={article?.title} align={TextAlign.LEFT} />
+            <>
+                <div className={cls.avatarWrapper}>
+                    <Avatar
+                        src={article?.img}
+                        size={200}
+                    />
+                </div>
+                <Text
+                    size={TextSize.L}
+                    title={article?.title}
+                    text={article?.subtitle}
+                    align={TextAlign.LEFT}
+                />
+                <div className={cls.articleInfo}>
+                    <Icon
+                        className={cls.icon}
+                        Svg={EyeIcon}
+                    />
+                    <Text text={article?.views.toString()} />
+                </div>
+                <div className={cls.articleInfo}>
+                    <Icon
+                        className={cls.icon}
+                        Svg={CalendarIcon}
+                    />
+                    <Text text={article?.createdAt} />
+                </div>
+            </>
+
         );
     }
 
@@ -67,6 +99,5 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                 {content}
             </div>
         </DynamicModuleLoader>
-
     );
 });
