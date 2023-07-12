@@ -5,10 +5,15 @@
     background: var(--code-bg);
     overflow: auto;
     margin: 10px auto;
+    color: var(--inverted-bg-color);
 }
 
 .button {
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+.copyIcon path {
+    stroke: var(--inverted-bg-color);
 }

@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
-import { Icon } from 'shared/ui/icon/Icon';
+import { Icon } from 'shared/ui/Icon/Icon';
 import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/article';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
@@ -47,7 +47,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         dispatch(fetchArticleById(id));
     }, [dispatch, id]);
 
-    const renderBlock = (block: ArticleBlock) => {
+    const renderBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {
         case ArticleBlockType.IMAGE:
             return <ArticleImageBlockComponent block={block} className={cls.block} />;
@@ -58,7 +58,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         default:
             return null;
         }
-    };
+    }, []);
 
     let content;
 

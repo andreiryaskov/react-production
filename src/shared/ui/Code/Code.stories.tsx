@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof Code> = (args) => <Code {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {
-    children: 'import React from \'react\';\n'
+    text: 'import React from \'react\';\n'
         + 'import {ComponentStory, ComponentMeta} from \'@storybook/react\';\n'
         + 'import {Code} from \'./Code\';\n'
         + '\n'
@@ -30,6 +30,6 @@ Normal.args = {
         + '\n'
         + 'export const Normal = Template.bind({});\n'
         + 'Normal.args = {\n'
-        + '    children: \'\'\n'
+        + '    text: \'\'\n'
         + '};',
 };
