@@ -29,15 +29,14 @@ export const Input = memo((props: InputProps) => {
     const [isFocused, setIsFocused] = useState(false);
     const [caretPosition, setCaretPosition] = useState(0);
 
+    const isCaretVisible = isFocused && !readonly;
+
     useEffect(() => {
         if (autofocus) {
             setIsFocused(true);
             ref.current?.focus();
         }
     }, [autofocus]);
-
-    // отображаем каретку только если инпут в фокусе и не ридонли состояние
-    const isCaretVisible = isFocused && !readonly;
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
@@ -61,7 +60,7 @@ export const Input = memo((props: InputProps) => {
     };
 
     return (
-        <div className={classNames(cls.InputWrapper, mods, [className])}>
+        <div className={classNames(cls.InputWrapper, {}, [className])}>
             {placeholder && (
                 <div className={cls.placeholder}>
                     {`${placeholder}>`}

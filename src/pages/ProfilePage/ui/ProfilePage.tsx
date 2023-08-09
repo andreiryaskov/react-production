@@ -11,14 +11,16 @@ import {
     profileActions,
     ProfileCard,
     profileReducer, ValidateProfileError,
-} from 'entities/ProfileCard';
+} from 'entities/Profile';
 import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { ProfilePageHeader } from 'pages/ProfilePage';
-import { Currency } from 'entities/CurrencySelect';
-import { Country } from 'entities/CountrySelect';
+import { Currency } from 'entities/Currency';
+import { Country } from 'entities/Country';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useParams } from 'react-router-dom';
+import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducersList = {
     profile: profileReducer,
@@ -31,32 +33,32 @@ interface ProfilePageProps {
 const ProfilePage = ({ className }: ProfilePageProps) => {
     const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
-
     const formData = useSelector(getProfileForm);
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
+    const { id } = useParams<{ id: string }>();
 
-    const validateErrorTranslate = {
-        [ValidateProfileError.SERVER_ERROR]: t('Ошибка сервера'),
-        [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный город'),
+    const validateErrorTranslates = {
+        [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
+        [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный регион'),
+        [ValidateProfileError.NO_DATA]: t('Данные не указаны'),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фамилия обязательны'),
         [ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
-        [ValidateProfileError.INCORRECT_USER_DATA]: t('Некорректные данные'),
-        [ValidateProfileError.NO_DATA]: t('Нет данных'),
     };
 
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData());
+    useInitialEffect(() => {
+        if (id) {
+            dispatch(fetchProfileData(id));
         }
-    }, [dispatch]);
+    });
 
-    const onChangeFirstName = useCallback((value?: string) => {
+    const onChangeFirstname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ first: value || '' }));
     }, [dispatch]);
 
-    const onChangeLastName = useCallback((value?: string) => {
+    const onChangeLastname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ lastname: value || '' }));
     }, [dispatch]);
 
@@ -72,16 +74,16 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         dispatch(profileActions.updateProfile({ username: value || '' }));
     }, [dispatch]);
 
-    const onChangeCurrency = useCallback((currency?: Currency) => {
+    const onChangeAvatar = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ avatar: value || '' }));
+    }, [dispatch]);
+
+    const onChangeCurrency = useCallback((currency: Currency) => {
         dispatch(profileActions.updateProfile({ currency }));
     }, [dispatch]);
 
-    const onChangeCountry = useCallback((country?: Country) => {
+    const onChangeCountry = useCallback((country: Country) => {
         dispatch(profileActions.updateProfile({ country }));
-    }, [dispatch]);
-
-    const onChangeAvatar = useCallback((avatar?: string) => {
-        dispatch(profileActions.updateProfile({ avatar }));
     }, [dispatch]);
 
     return (
@@ -90,25 +92,24 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
                 <ProfilePageHeader />
                 {validateErrors?.length && validateErrors.map((err) => (
                     <Text
-                        theme={TextTheme.ERROR}
-                        text={validateErrorTranslate[err]}
                         key={err}
+                        theme={TextTheme.ERROR}
+                        text={validateErrorTranslates[err]}
                     />
                 ))}
                 <ProfileCard
+                    data={formData}
                     isLoading={isLoading}
                     error={error}
-                    data={formData}
-                    onChangeFirstName={onChangeFirstName}
-                    onChangeLastName={onChangeLastName}
                     readonly={readonly}
+                    onChangeFirstname={onChangeFirstname}
+                    onChangeLastname={onChangeLastname}
                     onChangeAge={onChangeAge}
                     onChangeCity={onChangeCity}
                     onChangeUsername={onChangeUsername}
+                    onChangeAvatar={onChangeAvatar}
                     onChangeCurrency={onChangeCurrency}
                     onChangeCountry={onChangeCountry}
-                    onChangeAvatar={onChangeAvatar}
-
                 />
             </div>
         </DynamicModuleLoader>

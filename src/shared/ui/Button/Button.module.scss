@@ -31,6 +31,12 @@
     background: none;
 }
 
+.outline_red {
+    border: 1px solid var(--red-light);
+    color: var(--red-light);
+    background: none;
+}
+
 .background {
     background: var(--bg-color);
     color: var(--primary-color);
@@ -41,11 +47,6 @@
     background: var(--inverted-bg-color);
     color: var(--inverted-primary-color);
     border: none;
-}
-
-.outline_red {
-    color: var(--red-dark);
-    border: 1px solid var(--red-dark);
 }
 
 .square {

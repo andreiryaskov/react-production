@@ -1,10 +1,8 @@
 .title {
-    font: var(--font-l);
     color: var(--primary-color);
 }
 
 .text {
-    font: var(--font-m);
     color: var(--secondary-color);
 }
 
@@ -18,12 +16,12 @@
     }
 }
 
-.right {
-    text-align: right;
-}
-
 .left {
     text-align: left;
+}
+
+.right {
+    text-align: right;
 }
 
 .center {
@@ -36,7 +34,7 @@
     }
 
     .text {
-        color: var(--font-m);
+        font: var(--font-m);
     }
 }
 
@@ -46,6 +44,6 @@
     }
 
     .text {
-        color: var(--font-l);
+        font: var(--font-l);
     }
 }

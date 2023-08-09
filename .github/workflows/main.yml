@@ -1,9 +1,9 @@
 name: linting, testing, building
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 jobs:
   pipeline:
     runs-on: ubuntu-latest
@@ -25,8 +25,8 @@ jobs:
       - name: linting typescript
         run: npm run lint:ts
         if: always()
-#      - name: linting css
-#        run: npm run lint:scss
+      - name: linting css
+        run: npm run lint:scss
       - name: unit testing
         if: always()
         run: npm run test:unit

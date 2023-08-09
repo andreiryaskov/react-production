@@ -4,9 +4,8 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 import { Theme } from 'app/providers/ThemeProvider';
 import ProfilePage from 'pages/ProfilePage/ui/ProfilePage';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import { Currency } from 'entities/CurrencySelect';
-import { Country } from 'entities/CountrySelect';
-import avatar from 'shared/assets/tests/storybook_avatar.png';
+import { Country } from 'entities/Country';
+import { Currency } from 'entities/Currency';
 
 export default {
     title: 'pages/ProfilePage',
@@ -23,14 +22,13 @@ Normal.args = {};
 Normal.decorators = [StoreDecorator({
     profile: {
         form: {
-            first: 'Andrei',
-            lastname: 'R',
-            age: 35,
+            username: 'admin',
+            age: 22,
+            country: Country.Ukraine,
+            lastname: 'ulbi tv',
+            first: 'asd',
+            city: 'asf',
             currency: Currency.USD,
-            country: Country.Russia,
-            city: 'Krasnodar',
-            username: 'Andreiryaskov',
-            avatar,
         },
     },
 })];
@@ -40,14 +38,13 @@ Dark.args = {};
 Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
     profile: {
         form: {
-            first: 'Andrei',
-            lastname: 'R',
-            age: 35,
+            username: 'admin',
+            age: 22,
+            country: Country.Ukraine,
+            lastname: 'ulbi tv',
+            first: 'asd',
+            city: 'asf',
             currency: Currency.USD,
-            country: Country.Russia,
-            city: 'Krasnodar',
-            username: 'Andreiryaskov',
-            avatar,
         },
     },
 })];

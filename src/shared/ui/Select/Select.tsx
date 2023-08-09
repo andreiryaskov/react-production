@@ -1,49 +1,48 @@
-import React, { ChangeEvent, memo, useMemo } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
+import { ChangeEvent, memo, useMemo } from 'react';
 import cls from './Select.module.scss';
 
-export interface SelectOptions {
+export interface SelectOption {
     value: string;
     content: string;
 }
-export interface SelectProps {
+
+interface SelectProps {
     className?: string;
     label?: string;
-    options?: SelectOptions[];
+    options?: SelectOption[];
     value?: string;
     onChange?: (value: string) => void;
     readonly?: boolean;
 }
+
 export const Select = memo((props: SelectProps) => {
     const {
         className,
-        options,
         label,
-        readonly,
+        options,
         onChange,
         value,
+        readonly,
     } = props;
-    const { t } = useTranslation();
-
-    const optionsList = useMemo(() => options?.map((item) => (
-        <option
-            className={cls.option}
-            value={item.value}
-            key={item.value}
-        >
-            {item.content}
-        </option>
-    )), [options]);
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         if (onChange) {
             onChange(e.target.value);
         }
     };
-    const mods: Mods = {
-        [cls.readonly]: readonly,
-    };
+
+    const optionsList = useMemo(() => options?.map((opt) => (
+        <option
+            className={cls.option}
+            value={opt.value}
+            key={opt.value}
+        >
+            {opt.content}
+        </option>
+    )), [options]);
+
+    const mods: Mods = {};
 
     return (
         <div className={classNames(cls.Wrapper, mods, [className])}>
@@ -59,9 +58,7 @@ export const Select = memo((props: SelectProps) => {
                 onChange={onChangeHandler}
             >
                 {optionsList}
-
             </select>
-
         </div>
     );
 });

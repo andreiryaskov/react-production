@@ -24,7 +24,7 @@ interface TextProps {
     text?: string;
     theme?: TextTheme;
     align?: TextAlign;
-    size?: string
+    size?: TextSize;
 }
 
 export const Text = memo((props: TextProps) => {
@@ -35,7 +35,6 @@ export const Text = memo((props: TextProps) => {
         theme = TextTheme.PRIMARY,
         align = TextAlign.LEFT,
         size = TextSize.M,
-
     } = props;
 
     const mods: Mods = {
